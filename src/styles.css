@@ -48,34 +48,266 @@ button:disabled { cursor: not-allowed; opacity: .45; }
 .cat-caption strong { font-size: 13px; }
 .cat-caption span { margin-top: 4px; font-size: 11px; color: #7e7772; }
 
-.cat-face { width: 246px; height: 220px; position: relative; filter: drop-shadow(0 22px 20px rgba(68,62,58,.12)); }
-.cat-head { position: absolute; inset: 22px 10px 0; border-radius: 48% 48% 46% 46%; background: linear-gradient(145deg, #a8a6a3, #8f8d8a); border: 2px solid rgba(62,60,59,.16); }
-.ear { width: 78px; height: 88px; position: absolute; top: 3px; background: #999794; border-radius: 18px 62px 18px 54px; z-index: 0; }
-.ear::after { content:""; position:absolute; inset:14px 16px 18px; background:#beb1ad; border-radius:14px 40px 14px 34px; opacity:.66; }
-.ear-left { left: 25px; transform: rotate(-22deg); }
-.ear-right { right: 25px; transform: scaleX(-1) rotate(-22deg); }
-.eye { width: 57px; height: 62px; background: #efebe2; border-radius: 50%; position: absolute; top: 68px; overflow: hidden; box-shadow: inset 0 -2px 0 rgba(0,0,0,.06); animation: blink 7s infinite; transform-origin: center; }
-.eye-left { left: 43px; }
-.eye-right { right: 43px; }
-.pupil { width: 21px; height: 27px; border-radius: 50%; background: #252424; position: absolute; left: 18px; top: 17px; animation: lookAround 12s ease-in-out infinite; }
-.pupil::after { content:""; width: 5px; height: 7px; border-radius: 50%; background:white; position:absolute; left:4px; top:4px; opacity:.85; }
-.nose { position: absolute; top: 126px; left: 50%; transform: translateX(-50%); width: 19px; height: 13px; background: #705f5b; clip-path: polygon(0 0, 100% 0, 50% 100%); border-radius: 5px; }
-.mouth { position:absolute; top:138px; left:50%; width:44px; height:25px; transform:translateX(-50%); }
-.mouth span { position:absolute; width:24px; height:15px; border-bottom:2px solid #655956; top:0; }
-.mouth span:first-child { left:0; border-radius:0 0 20px 0; transform:rotate(-6deg); }
-.mouth span:last-child { right:0; border-radius:0 0 0 20px; transform:rotate(6deg); }
-.whiskers { position:absolute; top:132px; width:75px; display:grid; gap:8px; }
-.whiskers-left { left:-60px; }
-.whiskers-right { right:-60px; }
-.whiskers i { display:block; width:72px; height:1px; background:rgba(58,54,52,.45); transform:scaleX(var(--side)); transform-origin:center; }
-.whiskers i:nth-child(1) { rotate: -8deg; }
-.whiskers i:nth-child(3) { rotate: 8deg; }
-.cat-face.play { animation: catBob 2.2s ease-in-out infinite; }
-.cat-face.eat .cat-head { animation: eating 0.45s ease-in-out infinite alternate; }
-.cat-face.full .eye { height: 7px; top: 91px; background: #363333; border-radius: 50%; animation: none; }
-.cat-face.full .pupil { display:none; }
-.play-paw { position:absolute; right:-22px; bottom:2px; font-size:42px; animation: pawWave 1.2s ease-in-out infinite; transform-origin:bottom left; }
-.eat-sparkles { position:absolute; right:-24px; top:30px; letter-spacing:8px; animation:spark 1s infinite alternate; }
+.cat-face {
+  position: relative;
+  width: 330px;
+  height: 290px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 更圆、更胖的脑袋 */
+.cat-head {
+  position: relative;
+  width: 240px;
+  height: 205px;
+
+  background:
+    radial-gradient(circle at 50% 42%, #aaa7a3 0%, #9d9a96 62%, #92908c 100%);
+
+  border-radius: 48% 48% 46% 46% / 44% 44% 56% 56%;
+
+  box-shadow:
+    0 18px 35px rgba(64, 60, 56, 0.14),
+    inset 0 -5px 10px rgba(75, 71, 68, 0.08);
+
+  z-index: 2;
+}
+
+/* 耳朵稍微短、圆一点 */
+.ear {
+  position: absolute;
+  top: 25px;
+  width: 78px;
+  height: 82px;
+  background: #9d9a96;
+  z-index: 1;
+
+  border-radius: 24px 24px 12px 12px;
+}
+
+.ear::after {
+  content: "";
+  position: absolute;
+  width: 44px;
+  height: 48px;
+  left: 17px;
+  top: 16px;
+
+  background: #b9aaa6;
+  border-radius: 16px 16px 8px 8px;
+}
+
+.ear-left {
+  left: 40px;
+  transform: rotate(-24deg);
+}
+
+.ear-right {
+  right: 40px;
+  transform: rotate(24deg);
+}
+
+/* 眼睛整体变大 */
+.eye {
+  position: absolute;
+  top: 64px;
+
+  width: 63px;
+  height: 72px;
+
+  background: #f6f3ea;
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  box-shadow:
+    inset 0 -2px 3px rgba(0, 0, 0, 0.05);
+}
+
+.eye-left {
+  left: 48px;
+}
+
+.eye-right {
+  right: 48px;
+}
+
+/* 瞳孔也变大 */
+.pupil {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: 28px;
+  height: 36px;
+
+  background: #292725;
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+
+  animation: pupilMove 8s ease-in-out infinite;
+}
+
+/* 小高光，会萌很多 */
+.pupil::after {
+  content: "";
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  left: 6px;
+  top: 6px;
+
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+}
+
+/* 鼻子更小 */
+.nose {
+  position: absolute;
+  left: 50%;
+  top: 137px;
+
+  width: 14px;
+  height: 10px;
+
+  background: #806d69;
+
+  transform: translateX(-50%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* 嘴缩小 */
+.mouth {
+  position: absolute;
+  left: 50%;
+  top: 146px;
+
+  width: 34px;
+  height: 22px;
+
+  transform: translateX(-50%);
+}
+
+.mouth span {
+  position: absolute;
+  top: 0;
+
+  width: 17px;
+  height: 14px;
+
+  border-bottom: 2px solid #6e6764;
+}
+
+.mouth span:first-child {
+  left: 0;
+  border-radius: 0 0 14px 0;
+}
+
+.mouth span:last-child {
+  right: 0;
+  border-radius: 0 0 0 14px;
+}
+
+/* 胖脸颊效果 */
+.cat-head::before,
+.cat-head::after {
+  content: "";
+  position: absolute;
+
+  top: 130px;
+
+  width: 60px;
+  height: 44px;
+
+  background: rgba(181, 161, 157, 0.16);
+
+  border-radius: 50%;
+}
+
+.cat-head::before {
+  left: 24px;
+}
+
+.cat-head::after {
+  right: 24px;
+}
+
+/* 胡须整体位置 */
+.whiskers {
+  position: absolute;
+  top: 138px;
+
+  width: 85px;
+  height: 48px;
+}
+
+.whiskers-left {
+  left: -58px;
+}
+
+.whiskers-right {
+  right: -58px;
+}
+
+/* 三根胡须 */
+.whiskers i {
+  position: absolute;
+
+  width: 78px;
+  height: 1px;
+
+  background: rgba(96, 91, 88, 0.38);
+
+  transform-origin: center;
+}
+
+/* 左右自动镜像 */
+.whiskers i:nth-child(1) {
+  top: 8px;
+  transform: rotate(calc(var(--side) * -8deg));
+}
+
+.whiskers i:nth-child(2) {
+  top: 22px;
+  transform: rotate(0deg);
+}
+
+.whiskers i:nth-child(3) {
+  top: 36px;
+  transform: rotate(calc(var(--side) * 8deg));
+}
+
+/* 眼睛移动 */
+@keyframes pupilMove {
+  0% {
+    transform: translate(-50%, -50%) translate(0px, 0px);
+  }
+
+  20% {
+    transform: translate(-50%, -50%) translate(7px, -5px);
+  }
+
+  40% {
+    transform: translate(-50%, -50%) translate(-6px, -2px);
+  }
+
+  60% {
+    transform: translate(-50%, -50%) translate(4px, 6px);
+  }
+
+  80% {
+    transform: translate(-50%, -50%) translate(-5px, 4px);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) translate(0px, 0px);
+  }
+}
 
 @keyframes lookAround { 0%,100% { transform:translate(0,0); } 16% { transform:translate(-10px,-8px); } 34% { transform:translate(10px,-5px); } 52% { transform:translate(10px,9px); } 70% { transform:translate(-9px,8px); } 84% { transform:translate(0,0); } }
 @keyframes blink { 0%, 46%, 50%, 100% { transform:scaleY(1); } 48% { transform:scaleY(.06); } }
