@@ -48,273 +48,465 @@ button:disabled { cursor: not-allowed; opacity: .45; }
 .cat-caption strong { font-size: 13px; }
 .cat-caption span { margin-top: 4px; font-size: 11px; color: #7e7772; }
 
+/* =========================
+   CAT
+   ========================= */
+
 .cat-face {
-  position: relative;
   width: 330px;
-  height: 290px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 285px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 22px 20px rgba(68, 62, 58, 0.12));
 }
 
-/* 更圆、更胖的脑袋 */
+/* 胖胖的大圆脸 */
 .cat-head {
   position: relative;
-  width: 240px;
+  width: 250px;
   height: 205px;
+  margin-top: 34px;
 
   background:
-    radial-gradient(circle at 50% 42%, #aaa7a3 0%, #9d9a96 62%, #92908c 100%);
+    radial-gradient(circle at 50% 35%, #aaa7a3 0%, #9f9c98 58%, #96938f 100%);
 
-  border-radius: 48% 48% 46% 46% / 44% 44% 56% 56%;
+  border-radius: 48% 48% 49% 49% / 44% 44% 57% 57%;
+
+  border: 2px solid rgba(62, 60, 59, 0.10);
 
   box-shadow:
-    0 18px 35px rgba(64, 60, 56, 0.14),
-    inset 0 -5px 10px rgba(75, 71, 68, 0.08);
+    0 18px 36px rgba(62, 57, 53, 0.12),
+    inset 0 -8px 15px rgba(72, 68, 65, 0.05);
 
   z-index: 2;
 }
 
-/* 耳朵稍微短、圆一点 */
+/* 圆一点的小耳朵 */
 .ear {
-  position: absolute;
-  top: 25px;
-  width: 78px;
+  width: 80px;
   height: 82px;
-  background: #9d9a96;
-  z-index: 1;
 
-  border-radius: 24px 24px 12px 12px;
+  position: absolute;
+  top: 29px;
+
+  background: #9c9995;
+
+  border-radius: 30px 30px 13px 13px;
+
+  z-index: 1;
 }
 
 .ear::after {
   content: "";
   position: absolute;
-  width: 44px;
-  height: 48px;
-  left: 17px;
-  top: 16px;
 
-  background: #b9aaa6;
-  border-radius: 16px 16px 8px 8px;
+  width: 45px;
+  height: 48px;
+
+  left: 17px;
+  top: 15px;
+
+  background: #baa9a5;
+
+  border-radius: 22px 22px 10px 10px;
+
+  opacity: 0.75;
 }
 
 .ear-left {
-  left: 40px;
-  transform: rotate(-24deg);
+  left: 38px;
+  transform: rotate(-23deg);
 }
 
 .ear-right {
-  right: 40px;
-  transform: rotate(24deg);
+  right: 38px;
+  transform: rotate(23deg);
 }
 
-/* 眼睛整体变大 */
+/* 大眼睛 */
 .eye {
-  position: absolute;
-  top: 64px;
+  width: 70px;
+  height: 76px;
 
-  width: 63px;
-  height: 72px;
+  background: #f5f1e9;
 
-  background: #f6f3ea;
   border-radius: 50%;
+
+  position: absolute;
+  top: 57px;
 
   overflow: hidden;
 
   box-shadow:
-    inset 0 -2px 3px rgba(0, 0, 0, 0.05);
+    inset 0 -3px 5px rgba(0, 0, 0, 0.045);
+
+  animation: blink 7s infinite;
+
+  transform-origin: center;
 }
 
 .eye-left {
-  left: 48px;
+  left: 43px;
 }
 
 .eye-right {
-  right: 48px;
+  right: 43px;
 }
 
-/* 瞳孔也变大 */
+/* 更大的黑眼珠 */
 .pupil {
-  position: absolute;
-  left: 50%;
-  top: 50%;
+  width: 34px;
+  height: 42px;
 
-  width: 28px;
-  height: 36px;
+  border-radius: 50%;
 
   background: #292725;
-  border-radius: 50%;
 
-  transform: translate(-50%, -50%);
+  position: absolute;
 
-  animation: pupilMove 8s ease-in-out infinite;
+  left: 18px;
+  top: 17px;
+
+  animation: lookAround 10s ease-in-out infinite;
 }
 
-/* 小高光，会萌很多 */
+/* 眼珠高光 */
 .pupil::after {
   content: "";
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.95);
+
   position: absolute;
 
-  width: 8px;
-  height: 8px;
-
-  left: 6px;
+  left: 7px;
   top: 6px;
-
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
 }
 
-/* 鼻子更小 */
+/* 小鼻子 */
 .nose {
   position: absolute;
+
+  top: 135px;
   left: 50%;
-  top: 137px;
 
   width: 14px;
   height: 10px;
 
+  transform: translateX(-50%);
+
   background: #806d69;
 
-  transform: translateX(-50%);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
+
+  border-radius: 4px;
 }
 
-/* 嘴缩小 */
+/* 很小的猫嘴 */
 .mouth {
   position: absolute;
-  left: 50%;
-  top: 146px;
 
-  width: 34px;
-  height: 22px;
+  top: 145px;
+  left: 50%;
+
+  width: 30px;
+  height: 19px;
 
   transform: translateX(-50%);
 }
 
 .mouth span {
   position: absolute;
+
+  width: 15px;
+  height: 12px;
+
+  border-bottom: 2px solid #665f5c;
+
   top: 0;
-
-  width: 17px;
-  height: 14px;
-
-  border-bottom: 2px solid #6e6764;
 }
 
 .mouth span:first-child {
   left: 0;
-  border-radius: 0 0 14px 0;
+
+  border-radius: 0 0 15px 0;
+
+  transform: rotate(-5deg);
 }
 
 .mouth span:last-child {
   right: 0;
-  border-radius: 0 0 0 14px;
+
+  border-radius: 0 0 0 15px;
+
+  transform: rotate(5deg);
 }
 
-/* 胖脸颊效果 */
+/* 两边淡淡的胖脸腮红 */
 .cat-head::before,
 .cat-head::after {
   content: "";
+
   position: absolute;
 
-  top: 130px;
+  top: 127px;
 
-  width: 60px;
-  height: 44px;
-
-  background: rgba(181, 161, 157, 0.16);
+  width: 61px;
+  height: 43px;
 
   border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(190, 159, 155, 0.22),
+      rgba(190, 159, 155, 0.03) 68%,
+      transparent 72%
+    );
 }
 
 .cat-head::before {
-  left: 24px;
+  left: 17px;
 }
 
 .cat-head::after {
-  right: 24px;
+  right: 17px;
 }
 
-/* 胡须整体位置 */
+/* =========================
+   WHISKERS
+   ========================= */
+
 .whiskers {
   position: absolute;
-  top: 138px;
 
-  width: 85px;
+  top: 143px;
+
+  width: 83px;
   height: 48px;
+
+  pointer-events: none;
 }
 
 .whiskers-left {
-  left: -58px;
+  left: -65px;
 }
 
 .whiskers-right {
-  right: -58px;
+  right: -65px;
 }
 
-/* 三根胡须 */
 .whiskers i {
+  display: block;
+
   position: absolute;
 
   width: 78px;
   height: 1px;
 
-  background: rgba(96, 91, 88, 0.38);
+  background: rgba(86, 81, 78, 0.28);
 
-  transform-origin: center;
+  border-radius: 99px;
 }
 
-/* 左右自动镜像 */
-.whiskers i:nth-child(1) {
-  top: 8px;
-  transform: rotate(calc(var(--side) * -8deg));
+/* 左边三根 */
+.whiskers-left i:nth-child(1) {
+  top: 5px;
+  right: 0;
+  transform: rotate(9deg);
 }
 
-.whiskers i:nth-child(2) {
-  top: 22px;
-  transform: rotate(0deg);
+.whiskers-left i:nth-child(2) {
+  top: 20px;
+  right: 4px;
+  transform: rotate(1deg);
 }
 
-.whiskers i:nth-child(3) {
-  top: 36px;
-  transform: rotate(calc(var(--side) * 8deg));
+.whiskers-left i:nth-child(3) {
+  top: 35px;
+  right: 0;
+  transform: rotate(-9deg);
 }
 
-/* 眼睛移动 */
-@keyframes pupilMove {
-  0% {
-    transform: translate(-50%, -50%) translate(0px, 0px);
-  }
+/* 右边三根 */
+.whiskers-right i:nth-child(1) {
+  top: 5px;
+  left: 0;
+  transform: rotate(-9deg);
+}
 
-  20% {
-    transform: translate(-50%, -50%) translate(7px, -5px);
-  }
+.whiskers-right i:nth-child(2) {
+  top: 20px;
+  left: 4px;
+  transform: rotate(-1deg);
+}
 
-  40% {
-    transform: translate(-50%, -50%) translate(-6px, -2px);
-  }
+.whiskers-right i:nth-child(3) {
+  top: 35px;
+  left: 0;
+  transform: rotate(9deg);
+}
 
-  60% {
-    transform: translate(-50%, -50%) translate(4px, 6px);
-  }
+/* =========================
+   CAT MODES
+   ========================= */
 
-  80% {
-    transform: translate(-50%, -50%) translate(-5px, 4px);
-  }
+/* 玩耍的时候上下轻轻动 */
+.cat-face.play {
+  animation: catBob 2.2s ease-in-out infinite;
+}
 
+/* 吃饭的时候点头 */
+.cat-face.eat .cat-head {
+  animation: eating 0.45s ease-in-out infinite alternate;
+}
+
+/* 吃饱后眯眼 */
+.cat-face.full .eye {
+  height: 8px;
+  top: 91px;
+
+  background: #363333;
+
+  border-radius: 50%;
+
+  animation: none;
+}
+
+/* 吃饱后不显示瞳孔 */
+.cat-face.full .pupil {
+  display: none;
+}
+
+/* 玩耍小猫爪 */
+.play-paw {
+  position: absolute;
+
+  right: -22px;
+  bottom: 2px;
+
+  font-size: 42px;
+
+  animation: pawWave 1.2s ease-in-out infinite;
+
+  transform-origin: bottom left;
+
+  z-index: 5;
+}
+
+/* 吃饭小星星 */
+.eat-sparkles {
+  position: absolute;
+
+  right: -24px;
+  top: 30px;
+
+  letter-spacing: 8px;
+
+  animation: spark 1s infinite alternate;
+
+  z-index: 5;
+}
+
+/* =========================
+   ANIMATIONS
+   ========================= */
+
+/* 眼珠慢慢看四周 */
+@keyframes lookAround {
+  0%,
   100% {
-    transform: translate(-50%, -50%) translate(0px, 0px);
+    transform: translate(0, 0);
+  }
+
+  16% {
+    transform: translate(-8px, -6px);
+  }
+
+  34% {
+    transform: translate(8px, -5px);
+  }
+
+  52% {
+    transform: translate(8px, 7px);
+  }
+
+  70% {
+    transform: translate(-7px, 6px);
+  }
+
+  84% {
+    transform: translate(0, 0);
   }
 }
 
-@keyframes lookAround { 0%,100% { transform:translate(0,0); } 16% { transform:translate(-10px,-8px); } 34% { transform:translate(10px,-5px); } 52% { transform:translate(10px,9px); } 70% { transform:translate(-9px,8px); } 84% { transform:translate(0,0); } }
-@keyframes blink { 0%, 46%, 50%, 100% { transform:scaleY(1); } 48% { transform:scaleY(.06); } }
-@keyframes catBob { 0%,100% { transform:translateY(0) rotate(-1deg); } 50% { transform:translateY(-7px) rotate(1deg); } }
-@keyframes pawWave { 0%,100%{transform:rotate(-12deg)}50%{transform:rotate(18deg)} }
-@keyframes eating { from{transform:translateY(0)}to{transform:translateY(8px)} }
-@keyframes spark { from{opacity:.35;transform:scale(.85)}to{opacity:1;transform:scale(1.12)} }
+/* 偶尔眨眼 */
+@keyframes blink {
+  0%,
+  45%,
+  50%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  47%,
+  48% {
+    transform: scaleY(0.08);
+  }
+}
+
+/* 玩耍轻轻跳 */
+@keyframes catBob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(1deg);
+  }
+}
+
+/* 猫爪挥动 */
+@keyframes pawWave {
+  0%,
+  100% {
+    transform: rotate(-12deg);
+  }
+
+  50% {
+    transform: rotate(18deg);
+  }
+}
+
+/* 吃饭点头 */
+@keyframes eating {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(8px);
+  }
+}
+
+/* 小星星 */
+@keyframes spark {
+  from {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
 
 .orbit-track { position:absolute; left:50%; top:50%; transform-origin:center; translate:-50% -50%; border-radius:50%; animation: orbitSpin linear infinite; pointer-events:none; }
 .yarn-ball { position:absolute; left:50%; top:-43px; translate:-50% 0; width:98px; height:98px; border-radius:50%; border:1px solid rgba(58,54,52,.1); color:#343130; display:grid; place-items:center; padding:14px; box-shadow:0 16px 28px rgba(72,63,58,.12), inset 10px 10px 20px rgba(255,255,255,.12); pointer-events:auto; animation: counterSpin linear infinite; transition:transform .2s ease, box-shadow .2s ease; overflow:hidden; }
